@@ -1,3 +1,4 @@
+import java.awt.image.AreaAveragingScaleFilter;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -7,10 +8,10 @@ public class algo {
 
     public static void main(String[] args) {
 
-        int[] array1 = new int[]{1, 2, 3, 4, 5, 5, 7, 8, 9};
+        int[] array1 = new int[]{9, 2, 3, 4, 5, 5, 7, 8, 1};
         int[] array2 = new int[]{0, 2, 3, 4, 5, 5, 7, 7, 9};
 
-        List<Integer> arr = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        List<Integer> arr = Arrays.asList(1, 2, 3, 5);
         List<String> stringArr = Arrays.asList("Renos", "Nikos", "George", "Kalipso", "John", "Rena", "Rina");
 
         Person alex = new Person("Alex", 23);
@@ -18,7 +19,23 @@ public class algo {
         Person peter = new Person("Peter", 32);
         List<Person> people = Arrays.asList(alex, john, peter);
 
+        multiple(arr);
 
+    }
+
+    private static void multiple(List<Integer> list) {
+
+        System.out.println(list.stream().reduce(1, (Integer a, Integer b) -> a*b));
+    }
+    private static void closesToZero(int[] arr) {
+
+        int min = arr[0];
+        for(int i=1; i<arr.length; i++) {
+            if (Math.abs(arr[i])<=min) {
+                min = arr[i];
+            }
+        }
+        System.out.println(min);
     }
 
     private static void convertToBinary(int num) {
@@ -26,7 +43,7 @@ public class algo {
     }
 
     private static void addAllNumbers(int num) {
-        int result = IntStream.rangeClosed(1, num).reduce(0, Integer::sum);
+        int result = IntStream.rangeClosed(1, num).filter(n -> n%2==0).reduce(0, Integer::sum);
         System.out.println(result);
     }
 
