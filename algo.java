@@ -20,10 +20,18 @@ public class algo {
         Person peter = new Person("Peter", 32);
         List<Person> people = Arrays.asList(alex, john, peter);
 
-        findElement(array1, 8);
+        Person[] arrObj = new Person[]{alex, john, peter};
+
+        sortArrayObj(arrObj);
 
     }
 
+    private static void sortArrayObj(Person[] arr) {
+
+        Arrays.sort(arr, Person::comparePerson);
+
+        System.out.println(Arrays.toString(arr));
+    }
     private static void findElement(int[] arr, int k) {
 
         int res = Arrays.binarySearch(arr, k);
@@ -251,5 +259,17 @@ public class algo {
 
         public void setAge(Integer age) {
             this.age = age;
+        }
+
+        @Override
+        public String toString() {
+            return "Person{" +
+                    "name='" + name + '\'' +
+                    ", age=" + age +
+                    '}';
+        }
+
+        public static int comparePerson(Person p1, Person p2) {
+            return p2.getAge().compareTo(p1.getAge());
         }
     }
