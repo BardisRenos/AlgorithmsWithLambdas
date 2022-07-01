@@ -1,4 +1,3 @@
-import java.awt.image.AreaAveragingScaleFilter;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -14,13 +13,31 @@ public class algo {
         List<Integer> arr = Arrays.asList(1, 2, 3, 5);
         List<String> stringArr = Arrays.asList("Renos", "Nikos", "George", "Kalipso", "John", "Rena", "Rina");
 
+        String[] arrString = new String[] {"Renos", "Nikos", "George", "Kalipso", "John", "Rena", "Rina"};
+
         Person alex = new Person("Alex", 23);
         Person john = new Person("John", 40);
         Person peter = new Person("Peter", 32);
         List<Person> people = Arrays.asList(alex, john, peter);
 
-        multiple(arr);
+        findElement(array1, 8);
 
+    }
+
+    private static void findElement(int[] arr, int k) {
+
+        int res = Arrays.binarySearch(arr, k);
+
+        if (res >= 0) {
+            System.out.println("There is the number");
+        }else {
+            System.out.println("There is not the number");
+        }
+    }
+    private static<T> void sortArray(T[] arr) {
+
+        Arrays.sort(arr, Collections.reverseOrder());
+        System.out.println(Arrays.toString(arr));
     }
 
     private static void multiple(List<Integer> list) {
@@ -105,6 +122,7 @@ public class algo {
 
         if (num<=1) {
             System.out.println("It is not a prime number");
+            flag = true;
         }
 
         for (int i=2; i<num; i++) {
