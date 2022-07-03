@@ -22,13 +22,29 @@ public class algo {
 
         Person[] arrObj = new Person[]{alex, john, peter};
 
-        sortArrayObj(arrObj);
+        String text = "Renos is in France and drinking coffee all day. Is in Antibes all day";
 
+        checkStringIntoSentense(text,  "in");
     }
 
+    private static void checkStringIntoSentense(String arr, String giveText) {
+        List<String> resList = new ArrayList<>();
+
+        resList = Arrays.asList(arr.split(" ")).stream().filter(x -> x.equalsIgnoreCase(giveText)).map(x->new StringBuilder(x).reverse().toString()).collect(Collectors.toList());
+        resList.forEach(System.out::println);
+    }
+    private static void findTheIndexOfLetter(String text, char letter) {
+
+        System.out.println(text.indexOf(letter));
+    }
+    private static void findTheMiddleLetter(String text) {
+        char[] charArr = text.toCharArray();
+
+        System.out.println(charArr[(charArr.length/2)]);
+    }
     private static void sortArrayObj(Person[] arr) {
 
-        Arrays.sort(arr, Person::comparePerson);
+        Arrays.sort(arr, Person::comparePersonByAge);
 
         System.out.println(Arrays.toString(arr));
     }
@@ -53,7 +69,6 @@ public class algo {
         System.out.println(list.stream().reduce(1, (Integer a, Integer b) -> a*b));
     }
     private static void closesToZero(int[] arr) {
-
         int min = arr[0];
         for(int i=1; i<arr.length; i++) {
             if (Math.abs(arr[i])<=min) {
@@ -263,10 +278,10 @@ public class algo {
 
         @Override
         public String toString() {
-            return "Person{" + "name='" + name + '\'' +  ", age=" + age + '}';
+            return "Person{" + "name='" + name +  ", age=" + age + '}';
         }
 
-        public static int comparePerson(Person p1, Person p2) {
+        public static int comparePersonByAge(Person p1, Person p2) {
             return p2.getAge().compareTo(p1.getAge());
         }
     }
